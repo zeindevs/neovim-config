@@ -15,6 +15,7 @@ ts.setup {
     "javascript",
     "typescript",
     "lua",
+    "go",
   },
   autotag = {
     enable = true,

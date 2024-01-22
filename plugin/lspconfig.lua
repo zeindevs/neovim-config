@@ -95,6 +95,11 @@ nvim_lsp.gopls.setup({
   },
 })
 
+nvim_lsp.rust_analyzer.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
 nvim_lsp.svelte.setup({
   on_attach = on_attach,
   capabilities = capabilities,
@@ -135,9 +140,23 @@ nvim_lsp.emmet_ls.setup({
 --  capabilities = capabilities,
 --})
 
-nvim_lsp.jsonls.setup({
+-- nvim_lsp.jsonls.setup({
+--   on_attach = on_attach,
+--   capabilities = capabilities
+-- })
+
+nvim_lsp.prismals.setup({
   on_attach = on_attach,
   capabilities = capabilities
+})
+
+nvim_lsp.sqlls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { 'sql' },
+  root_dir = function(_)
+    return vim.loop.cwd()
+  end,
 })
 
 nvim_lsp.lua_ls.setup({
@@ -178,11 +197,11 @@ nvim_lsp.astro.setup({
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-  underline = true,
-  update_in_insert = false,
-  virtual_text = { spacing = 4, prefix = "●" },
-  severity_sort = true,
-}
+    underline = true,
+    update_in_insert = false,
+    virtual_text = { spacing = 4, prefix = "●" },
+    severity_sort = true,
+  }
 )
 
 -- Diagnostic symbols in the sign column (gutter)
